@@ -10,6 +10,13 @@
 
 This repository contains a collection of scripts for managing and automating Proxmox Virtual Environment (Proxmox VE). Originally created by [tteck](https://github.com/tteck), the project is now community-driven and continues to evolve.
 
+### Custom scripts:
+
+#### Pangolin-Newt
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Bart0110/ProxmoxVED/main/ct/pangolin-newt.sh)"
+```
+
 ---
 
 ## Want to help?
