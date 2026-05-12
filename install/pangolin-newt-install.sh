@@ -17,25 +17,42 @@ msg_info "Downloading Newt Binary"
 fetch_and_deploy_gh_release "newt" "fosrl/newt" "singlefile" "latest" "/usr/local/bin" "newt_linux_*"
 msg_ok "Downloaded Newt Binary"
 
-msg_info "Configuring Newt"
-install -d -m 0755 /etc/newt
+# Prompt for credentials (all required) using whiptail
+if NEWT_ID=$(whiptail --backtitle "Pangolin Installation" --title "Newt ID" --inputbox "\nEnter your Pangolin Newt ID (from your Pangolin site):" 10 60 "" 3>&1 1>&2 2>&3); then
+  while [[ -z "$NEWT_ID" ]]; do
+    whiptail --backtitle "Pangolin Installation" --title "Newt ID Required" --msgbox "NEWT_ID is required. Please enter a valid ID." 8 58
+    if NEWT_ID=$(whiptail --backtitle "Pangolin Installation" --title "Newt ID" --inputbox "\nEnter your Pangolin Newt ID (from your Pangolin site):" 10 60 "" 3>&1 1>&2 2>&3); then
+      :
+    else
+      exit
+    fi
+  done
+else
+  exit
+fi
 
-# Prompt for credentials (all required)
-read -r -p "${TAB3}Enter your Pangolin Newt ID (from your Pangolin site): " NEWT_ID
-while [[ -z "$NEWT_ID" ]]; do
-  msg_error "NEWT_ID is required. Please enter a valid ID."
-  read -r -p "${TAB3}Enter your Pangolin Newt ID (from your Pangolin site): " NEWT_ID
-done
-
-read -r -p "${TAB3}Enter your Pangolin Newt Secret (from your Pangolin site): " NEWT_SECRET
-while [[ -z "$NEWT_SECRET" ]]; do
-  msg_error "NEWT_SECRET is required. Please enter a valid secret."
-  read -r -p "${TAB3}Enter your Pangolin Newt Secret (from your Pangolin site): " NEWT_SECRET
-done
+if NEWT_SECRET=$(whiptail --backtitle "Pangolin Installation" --title "Newt Secret" --passwordbox "\nEnter your Pangolin Newt Secret (from your Pangolin site):" 10 60 "" 3>&1 1>&2 2>&3); then
+  while [[ -z "$NEWT_SECRET" ]]; do
+    whiptail --backtitle "Pangolin Installation" --title "Newt Secret Required" --msgbox "NEWT_SECRET is required. Please enter a valid secret." 8 58
+    if NEWT_SECRET=$(whiptail --backtitle "Pangolin Installation" --title "Newt Secret" --passwordbox "\nEnter your Pangolin Newt Secret (from your Pangolin site):" 10 60 "" 3>&1 1>&2 2>&3); then
+      :
+    else
+      exit
+    fi
+  done
+else
+  exit
+fi
 
 PANGOLIN_ENDPOINT_DEFAULT="https://app.pangolin.net"
-read -r -p "${TAB3}Enter your Pangolin endpoint (default: ${PANGOLIN_ENDPOINT_DEFAULT}): " PANGOLIN_ENDPOINT
-PANGOLIN_ENDPOINT="${PANGOLIN_ENDPOINT:-$PANGOLIN_ENDPOINT_DEFAULT}"
+if PANGOLIN_ENDPOINT=$(whiptail --backtitle "Pangolin Installation" --title "Pangolin Endpoint" --inputbox "\nEnter your Pangolin endpoint (default: ${PANGOLIN_ENDPOINT_DEFAULT}):" 10 60 "${PANGOLIN_ENDPOINT_DEFAULT}" 3>&1 1>&2 2>&3); then
+  PANGOLIN_ENDPOINT="${PANGOLIN_ENDPOINT:-$PANGOLIN_ENDPOINT_DEFAULT}"
+else
+  PANGOLIN_ENDPOINT="$PANGOLIN_ENDPOINT_DEFAULT"
+fi
+
+msg_info "Configuring Newt"
+install -d -m 0755 /etc/newt
 
 cat <<EOF >/etc/newt/newt.env
 NEWT_ID=${NEWT_ID}

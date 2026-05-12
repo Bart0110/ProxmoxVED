@@ -6,7 +6,7 @@ source <(curl -fsSL https://raw.githubusercontent.com/Bart0110/ProxmoxVED/main/m
 # Source: https://github.com/fosrl/newt
 
 APP="Pangolin-Newt"
-var_tags="${var_tags:-pangolin;vpn}"
+var_tags="${var_tags:-bart0110-script;pangolin;vpn}"
 var_cpu="${var_cpu:-1}"
 var_ram="${var_ram:-512}"
 var_disk="${var_disk:-2}"
