@@ -1,0 +1,40 @@
+{
+  "name": "Filestash",
+  "slug": "filestash",
+  "categories": [
+    11
+  ],
+  "date_created": "2026-05-16",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "interface_port": 8334,
+  "documentation": "https://www.filestash.app/docs/",
+  "website": "https://www.filestash.app/",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/filestash.webp",
+  "description": "A modern web file manager with built-in support for Dropbox, Google Drive, S3, WebDAV, Git, FTP, SSH, and more.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/filestash.sh",
+      "config_path": "/opt/filestash/dist/data/state/config/config.json",
+      "resources": {
+        "cpu": 2,
+        "ram": 1024,
+        "hdd": 8,
+        "os": "Debian",
+        "version": "13"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": [
+    {
+      "text": "Initial admin account must be created through the web setup wizard at first login.",
+      "type": "info"
+    }
+  ]
+}
