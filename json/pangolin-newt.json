@@ -1,0 +1,44 @@
+{
+    "name": "Pangolin Newt",
+    "slug": "pangolin-newt",
+    "categories": [
+        4
+    ],
+    "date_created": "2026-05-17",
+    "type": "ct",
+    "updateable": true,
+    "privileged": false,
+    "interface_port": null,
+    "documentation": "https://docs.pangolin.net/",
+    "website": "https://pangolin.net/",
+    "logo": "",
+    "description": "Pangolin Newt is a fully user-space WireGuard tunnel client and TCP/UDP proxy that connects to a Pangolin controller. It establishes secure, encrypted tunnels without requiring root-level network configuration.",
+    "install_methods": [
+        {
+            "type": "default",
+            "script": "ct/pangolin-newt.sh",
+            "config_path": "/etc/newt/newt.env",
+            "resources": {
+                "cpu": 1,
+                "ram": 512,
+                "hdd": 2,
+                "os": "Debian",
+                "version": "13"
+            }
+        }
+    ],
+    "default_credentials": {
+        "username": null,
+        "password": null
+    },
+    "notes": [
+        {
+            "text": "A privileged LXC container is required because Newt manages WireGuard tunnel interfaces.",
+            "type": "info"
+        },
+        {
+            "text": "NEWT_ID and NEWT_SECRET are required and obtained from your Pangolin site. Configure them at /etc/newt/newt.env.",
+            "type": "warning"
+        }
+    ]
+}
