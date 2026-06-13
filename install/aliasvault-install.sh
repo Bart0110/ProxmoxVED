@@ -2,7 +2,7 @@
 
 # Copyright (c) 2021-2026 community-scripts ORG
 # Author: ProxmoxVED Community
-# License: MIT | https://github.com/community-scripts/ProxmoxVED/raw/main/LICENSE
+# License: MIT | https://github.com/Bart0110/ProxmoxVED/raw/main/LICENSE
 # Source: https://aliasvault.net
 
 source /dev/stdin <<<"$FUNCTIONS_FILE_PATH"
