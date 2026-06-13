@@ -1,0 +1,36 @@
+{
+  "name": "Tor",
+  "slug": "tor",
+  "categories": [
+    4
+  ],
+  "date_created": "2026-06-13",
+  "type": "ct",
+  "updateable": true,
+  "privileged": false,
+  "has_arm": true,
+  "interface_port": 9050,
+  "documentation": "https://tb-manual.torproject.org/",
+  "website": "https://www.torproject.org/",
+  "logo": "https://cdn.jsdelivr.net/gh/selfhst/icons@main/webp/tor.webp",
+  "description": "Tor is free software and an open network that helps you defend against traffic analysis, a form of network surveillance that threatens personal freedom and privacy. It provides a SOCKS proxy on port 9050 for anonymized internet traffic.",
+  "install_methods": [
+    {
+      "type": "default",
+      "script": "ct/tor.sh",
+      "config_path": "/etc/tor/torrc",
+      "resources": {
+        "cpu": 1,
+        "ram": 512,
+        "hdd": 2,
+        "os": "Alpine",
+        "version": "3.23"
+      }
+    }
+  ],
+  "default_credentials": {
+    "username": null,
+    "password": null
+  },
+  "notes": []
+}
